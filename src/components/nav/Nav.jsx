@@ -16,7 +16,7 @@ const Nav = () => {
                         <input 
                         type="text" 
                         placeholder='Search Items'
-                        className='px-4 py-2 outline-0 focus:ring-purple-300 focus:ring-2'
+                        className='px-4 py-2 outline-0 focus:ring-purple-300 focus:ring-2 rounded-md'
                         />
                         <div className="button rounded-full p-2 cursor-pointer transition-all duration-300 ease-in hover:bg-purple-300 ">
                             <BsSearch />
