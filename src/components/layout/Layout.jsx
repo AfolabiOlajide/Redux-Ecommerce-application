@@ -74,7 +74,7 @@ const Layout = () => {
                 </NavLink>
             </aside>
             {/* main output */}
-            <section id='main-output' className={`bg-white h-[85vh] p-6 overflow-y-auto overflow-x-auto rounded-3xl ${sideBarActiveState ? 'col-span-10' : 'col-span-full'} md:col-span-10 md:h-[80vh] md:p-12 `}>
+            <section id='main-output' className={`bg-white h-[85vh] p-3 overflow-y-auto overflow-x-auto rounded-3xl ${sideBarActiveState ? 'col-span-10' : 'col-span-full'} md:col-span-10 md:h-[80vh] md:p-12 `}>
                 <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/home' element={<Home />} />
