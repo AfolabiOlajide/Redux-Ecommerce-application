@@ -30,7 +30,7 @@ const Shop = () => {
             </div>
             {/* products */}
             <h3 className='text-lg text-gray-600 my-3'>Products:</h3>
-            <div className="grid grid-cols-2 gap-4 mt-8 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 mt-8 lg:grid-cols-4">
                 { products.map(product => (
                     <Link to={``} key={product.id}>
                         <div className="product relative rounded-lg overflow-hidden border-2 border-gray-300 h-[30vh] shadow-lg shadow-gray-900/30">
