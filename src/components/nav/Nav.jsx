@@ -1,8 +1,12 @@
 import React from 'react';
-import { BsSearch, BsSuitHeartFill } from "react-icons/bs";
-import { IoMdCart } from 'react-icons/io'
+import { useDispatch } from 'react-redux';
+import { BsSearch, BsSuitHeartFill, BsGridFill } from "react-icons/bs";
+import { IoMdCart } from 'react-icons/io';
+
+import { setSideBarActive } from '../../app/slices/global';
 
 const Nav = () => {
+    const dispatch = useDispatch();
     return (
         <nav id='nav'>
             <div className="container mx-auto py-6 px-4 flex justify-between">
@@ -33,8 +37,13 @@ const Nav = () => {
                             <IoMdCart className='text-gray-800 text-[1.5rem] cursor-pointer'/>
                             {/* <span className='absolute -top-1 -right-1 bg-red-500 w-3 h-3 rounded-full text-[.5rem]'></span> */}
                         </div>
+                        {/* Hamburger Menu */}
+                        <div className="hamburger block md:hidden">
+                            <BsGridFill className='text-gray-800 text-[1.5rem] cursor-pointer' onClick={() => dispatch(setSideBarActive())}/>
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </nav>
     )
