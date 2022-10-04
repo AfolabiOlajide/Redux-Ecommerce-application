@@ -31,7 +31,7 @@ const Shop = () => {
             <div className="grid grid-cols-2 gap-4 mt-12 md:grid-cols-4">
                 { products.map(product => (
                     <Link to={``} key={product.id}>
-                        <div className="product relative rounded-md overflow-hidden border-2 border-green-300 h-[30vh]">
+                        <div className="product relative rounded-md overflow-hidden border-2 border-green-300 h-[30vh] shadow-lg shadow-green-400/30">
                             {/* image */}
                             <div className="h-[80%]">
                             <img src={product.image} className='w-[100%] h-[100%] object-contain' alt="" />
