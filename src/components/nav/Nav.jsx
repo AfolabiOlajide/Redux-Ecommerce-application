@@ -12,7 +12,7 @@ const Nav = () => {
             <div className="container mx-auto py-6 px-4 flex justify-between">
                 {/* logo */}
                 <div className="logo">
-                    <h1 className='text-3xl text-purple-600 font-bold'>Fake.Store</h1>
+                    <h1 className='text-3xl text-green-800 font-bold'>Fake.Store</h1>
                 </div>
                 {/* Items */}
                 <div className="flex space-x-4 items-center">

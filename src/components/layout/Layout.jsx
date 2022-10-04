@@ -12,6 +12,7 @@ import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import FAQ from '../../pages/FAQ';
 import Shop from '../../pages/Shop';
+// import OutletContainer from '../../pages/OutletContainer';
 import { getSideBarState } from '../../app/slices/global';
 
 const Layout = () => {
@@ -20,8 +21,8 @@ const Layout = () => {
     return (
         <main className='grid grid-cols-12 px-2 md:px-12'>
             {/* SideBar */}
-            <aside className={`${sideBarActiveState ? 'col-span-2' : 'hidden'} md:col-span-2 pt-12 flex-col space-y-6 md:flex`}>
-                <NavLink to="/">
+            <aside className={`${sideBarActiveState ? 'col-span-2 flex-col justify-center' : 'hidden'} md:col-span-2 pt-12 flex-col space-y-6 md:flex`}>
+                <NavLink to="/home">
                     {({ isActive }) => (
                         <div className={`sidebar-link flex space-x-4 items-center ${ isActive ? 'bg-white' : undefined} p-4 rounded-l-2xl cursor-pointer md:hover:pl-8
                                     transition-all duration-300 ease-in-out`}>
@@ -73,13 +74,15 @@ const Layout = () => {
                 </NavLink>
             </aside>
             {/* main output */}
-            <section className={`bg-white h-[85vh] p-12 rounded-3xl ${sideBarActiveState ? 'col-span-10' : 'col-span-full'} md:col-span-10 md:h-[80vh]`}>
+            <section id='main-output' className={`bg-white h-[85vh] p-6 overflow-y-auto overflow-x-auto rounded-3xl ${sideBarActiveState ? 'col-span-10' : 'col-span-full'} md:col-span-10 md:h-[80vh] md:p-12 `}>
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/shop' element={<Shop />} />
-                    <Route path='/about' element={<About />} />
-                    <Route path='/contact' element={<Contact />} />
-                    <Route path='/faq' element={<FAQ />} />
+                        <Route path='/' element={<Home />} />
+                        <Route path='/home' element={<Home />} />
+                        <Route path='/shop' element={<Shop />} />
+                        <Route path='/about' element={<About />} />
+                        <Route path='/contact' element={<Contact />} />
+                        <Route path='/faq' element={<FAQ />} />
+                    
                 </Routes>
             </section>
         </main>
