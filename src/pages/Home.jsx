@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -22,6 +23,15 @@ const Home = () => {
                     <h2 className='font-bold text-3xl text-white mb-3'>End of search</h2>
                     <p className='font-semibold'>Have you been looking for a front-end Developer, well welcome to the end of your search because here is one ready to give you premium service.</p>
                 </div>
+            </div>
+            <div className="my-8">
+                <h3 className="font-semibold md:text-2xl text-xl">Okay nothing much to see here go and do some shopping @ &nbsp;    
+                <Link to="/shop">
+                    <button className='bg-gray-900 text-white text-lg outline-none py-1 px-3 mr-8 rounded-md hover:ring-2 hover:ring-gray-500'>
+                        Shop
+                    </button>
+                </Link>
+                </h3>
             </div>
         </div>
     )
