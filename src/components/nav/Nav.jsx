@@ -4,6 +4,7 @@ import { BsSearch, BsSuitHeartFill, BsGridFill } from "react-icons/bs";
 import { IoMdCart } from 'react-icons/io';
 
 import { setSideBarActive } from '../../app/slices/global';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
     const dispatch = useDispatch();
@@ -29,14 +30,18 @@ const Nav = () => {
                     <span className='hidden w-1 bg-gray-800 rounded-md h-6 md:block'></span>
                     {/* store icons */}
                     <div className="flex space-x-4">
-                        <div className="icon relative">
-                            <BsSuitHeartFill className='text-gray-800 text-[1.5rem] cursor-pointer'/>
-                            {/* <span className='absolute -top-1 -right-1 bg-red-500 w-3 h-3 rounded-full text-[.5rem]'></span> */}
-                        </div>
-                        <div className="icon relative">
-                            <IoMdCart className='text-gray-800 text-[1.5rem] cursor-pointer'/>
-                            {/* <span className='absolute -top-1 -right-1 bg-red-500 w-3 h-3 rounded-full text-[.5rem]'></span> */}
-                        </div>
+                        <Link to="/wishlist">
+                            <div className="icon relative">
+                                <BsSuitHeartFill className='text-gray-800 text-[1.5rem] cursor-pointer'/>
+                                {/* <span className='absolute -top-1 -right-1 bg-red-500 w-3 h-3 rounded-full text-[.5rem]'></span> */}
+                            </div>
+                        </Link>
+                        <Link to="/cart" >
+                            <div className="icon relative">
+                                <IoMdCart className='text-gray-800 text-[1.5rem] cursor-pointer'/>
+                                {/* <span className='absolute -top-1 -right-1 bg-red-500 w-3 h-3 rounded-full text-[.5rem]'></span> */}
+                            </div>
+                        </Link>
                         {/* Hamburger Menu */}
                         <div className="hamburger block md:hidden">
                             <BsGridFill className='text-gray-800 text-[1.5rem] cursor-pointer' onClick={() => dispatch(setSideBarActive())}/>

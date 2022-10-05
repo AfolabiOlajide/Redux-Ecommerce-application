@@ -12,6 +12,8 @@ import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import FAQ from '../../pages/FAQ';
 import Shop from '../../pages/Shop';
+import Cart from '../../pages/Cart';
+import Wishlist from '../../pages/Wishlist'
 // import OutletContainer from '../../pages/OutletContainer';
 import { getSideBarState } from '../../app/slices/global';
 
@@ -81,8 +83,9 @@ const Layout = () => {
                         <Route path='/shop' element={<Shop />} />
                         <Route path='/about' element={<About />} />
                         <Route path='/contact' element={<Contact />} />
-                        <Route path='/faq' element={<FAQ />} />
-                    
+                        <Route path='/faq' element={<FAQ />} />                    
+                        <Route path='/cart' element={<Cart />} />                    
+                        <Route path='/wishlist' element={<Wishlist />} />                    
                 </Routes>
             </section>
         </main>
