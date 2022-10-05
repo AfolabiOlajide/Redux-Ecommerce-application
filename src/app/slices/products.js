@@ -3,7 +3,8 @@ import axios from "axios";
 
 const initialState = {
     products: [],
-    categories: []
+    categories: [],
+    error: true
 }
 
 const PRODUCT_URL = "https://fakestoreapi.com/products";
@@ -33,16 +34,26 @@ const productsSlice = createSlice({
     reducers: {},
     extraReducers(builder){
         builder
+            .addCase(fetchProducts.rejected, (state, action) => {
+                state.categories = []
+                state.error = true;
+            })
             .addCase(fetchProducts.fulfilled, (state, action) => {
+                state.error = false;
                 state.products =  action?.payload;
             })
+            .addCase(fetchCategories.rejected, (state, action) =>{
+                state.error = true;
+                state.categories = []
+            })
             .addCase(fetchCategories.fulfilled, (state, action) => {
+                state.error = false;
                 state.categories = action?.payload
             })
     }
 });
 
-
+export const getErrorStatus = (state) => state.products.error;
 export const getCategories = (state) => state.products.categories;
 export const getProducts = (state) => state.products.products;
 export default productsSlice.reducer;
