@@ -1,14 +1,13 @@
 import React from 'react';
-import { BsSuitHeartFill } from 'react-icons/bs';
-import { IoMdCart } from 'react-icons/io';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { selectProductById, selectByCategory } from '../../app/slices/products';
+import Product from '../product/Product';
 
 
 const ProductDetail = () => {
-    const {productId} = useParams(); 
+    const {productId} = useParams();
 
     const product = useSelector((state) => selectProductById(state, Number(productId)));
     const products = useSelector( (state) => selectByCategory(state, product.category) )
@@ -21,20 +20,9 @@ const ProductDetail = () => {
         )
     }
 
+
     const productList = products.map(product => (
-        <Link to={`/product/${product.id}`} key={product.id}>
-            <div className="product relative rounded-lg overflow-hidden border-2 border-gray-300 h-[30vh] shadow-lg shadow-gray-900/30">
-                {/* image */}
-                <div className="h-[80%]">
-                <img src={product.image} className='w-[100%] h-[100%] object-contain' alt="" />
-                </div>
-                <div className="icons bg-gray-600 flex items-center space-x-3 px-3 h-[20%]">
-                    <div className="price text-white font-bold">${product.price}</div>
-                    <BsSuitHeartFill className='text-white text-[1.5rem] cursor-pointer'/>
-                    <IoMdCart className='text-white text-[1.5rem] cursor-pointer'/>
-                </div>
-            </div>
-        </Link>
+        <Product key={product.id} product={product} />
     ))
 
     return (

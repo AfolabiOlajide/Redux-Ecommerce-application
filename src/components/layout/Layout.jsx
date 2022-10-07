@@ -18,6 +18,7 @@ import Wishlist from '../../pages/Wishlist'
 import { getSideBarState } from '../../app/slices/global';
 import ProductDetail from '../productDetail/ProductDetail';
 import ByCategory from '../category/ByCategory';
+import ScrollToTop from '../scrollToTop/ScrollToTop';
 
 const Layout = () => {
     const sideBarActiveState = useSelector(getSideBarState);
@@ -79,7 +80,8 @@ const Layout = () => {
             </aside>
             {/* main output */}
             <section id='main-output' className={`bg-white h-[85vh] p-3 overflow-y-auto overflow-x-auto rounded-3xl ${sideBarActiveState ? 'col-span-10' : 'col-span-full'} md:col-span-10 md:h-[80vh] md:p-12 `}>
-                <Routes>
+                <ScrollToTop>
+                    <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/home' element={<Home />} />
                         <Route path='/shop' element={<Shop />} />
@@ -89,8 +91,9 @@ const Layout = () => {
                         <Route path='/faq' element={<FAQ />} />                    
                         <Route path='/cart' element={<Cart />} />                    
                         <Route path='/wishlist' element={<Wishlist />} />                    
-                        <Route path='/product/:productId' element={<ProductDetail />} />                    
-                </Routes>
+                        <Route path='/product/:productId' element={<ProductDetail />} />   
+                    </Routes>
+                </ScrollToTop>                 
             </section>
         </main>
     )
