@@ -33,7 +33,7 @@ const Shop = () => {
     }
 
     const productList = products.map(product => (
-        <Link to={``} key={product.id}>
+        <Link to={`/product/${product.id}`} key={product.id}>
             <div className="product relative rounded-lg overflow-hidden border-2 border-gray-300 h-[30vh] shadow-lg shadow-gray-900/30">
                 {/* image */}
                 <div className="h-[80%]">

@@ -16,6 +16,8 @@ import Cart from '../../pages/Cart';
 import Wishlist from '../../pages/Wishlist'
 // import OutletContainer from '../../pages/OutletContainer';
 import { getSideBarState } from '../../app/slices/global';
+import ProductDetail from '../productDetail/ProductDetail';
+import ByCategory from '../category/ByCategory';
 
 const Layout = () => {
     const sideBarActiveState = useSelector(getSideBarState);
@@ -81,11 +83,13 @@ const Layout = () => {
                         <Route path='/' element={<Home />} />
                         <Route path='/home' element={<Home />} />
                         <Route path='/shop' element={<Shop />} />
+                        <Route path='/shop/:category' element={<ByCategory />} />                    
                         <Route path='/about' element={<About />} />
                         <Route path='/contact' element={<Contact />} />
                         <Route path='/faq' element={<FAQ />} />                    
                         <Route path='/cart' element={<Cart />} />                    
                         <Route path='/wishlist' element={<Wishlist />} />                    
+                        <Route path='/product/:productId' element={<ProductDetail />} />                    
                 </Routes>
             </section>
         </main>

@@ -15,7 +15,7 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
         const response = await axios.get(PRODUCT_URL);
         return response.data;
     } catch (error) {
-        return error.message;
+        console.log(error.message);
     }
 });
 
@@ -24,7 +24,7 @@ export const fetchCategories = createAsyncThunk("products/fetchCategories", asyn
         const response = await axios.get(CATEGORIES_URL);
         return response.data;
     } catch (error) {
-        return error.message;
+        console.log(error.message);
     }
 });
 
@@ -40,13 +40,25 @@ const productsSlice = createSlice({
             })
             .addCase(fetchProducts.fulfilled, (state, action) => {
                 state.error = false;
-                state.products =  action?.payload;
+                const loadedData = action.payload.map(product => {
+                    product.addedToCart = false;
+                    product.addedtoWishlist = false;
+
+                    return product;
+            })
+                state.products =  loadedData;
             })
             .addCase(fetchCategories.rejected, (state, action) =>{
+                if(!action.payload){
+                    return
+                }
                 state.error = true;
                 state.categories = []
             })
             .addCase(fetchCategories.fulfilled, (state, action) => {
+                if(!action.payload){
+                    return
+                }
                 state.error = false;
                 state.categories = action?.payload
             })
@@ -56,4 +68,8 @@ const productsSlice = createSlice({
 export const getErrorStatus = (state) => state.products.error;
 export const getCategories = (state) => state.products.categories;
 export const getProducts = (state) => state.products.products;
+
+export const selectProductById = (state, productId) => state.products.products.find( product => productId === product.id );
+export const selectByCategory = (state, category) => state.products.products.filter(product => category === product.category );
+
 export default productsSlice.reducer;
