@@ -33,12 +33,26 @@ const productsSlice = createSlice({
     initialState,
     reducers: {
         productWishlistState (state, action) {
-            const product = state.products.find(product => product.id === action.payload);
-            if(product.addedtoWishlist){
-                product.addedtoWishlist = false;
-            }else{
-                product.addedtoWishlist = true;
-            }
+            const updatedProducts = state.products.map(product => {
+                if(product.id !== action.payload){
+                    return product;
+                }else{
+                    if(product.addedToWishlist){
+                        product.addedToWishlist = false;
+                    }else{
+                        product.addedToWishlist = true;
+                    }
+                    return product;
+                }
+            });
+            state.products = updatedProducts;
+
+            // const product = state.products.filter(product => product.id === action.payload);
+            // if(product.addedToWishlist){
+            //     product.addedToWishlist = false;
+            // }else{
+            //     product.addedToWishlist = true;
+            // }
         }
     },
     extraReducers(builder){
@@ -51,7 +65,7 @@ const productsSlice = createSlice({
                 state.error = false;
                 const loadedData = action.payload.map(product => {
                     product.addedToCart = false;
-                    product.addedtoWishlist = false;
+                    product.addedToWishlist = false;
 
                     return product;
             })

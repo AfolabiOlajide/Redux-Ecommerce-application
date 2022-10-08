@@ -29,8 +29,8 @@ const Product = ({product}) => {
             </div>
             <div className="icons bg-gray-600 flex items-center space-x-3 px-3 h-[20%]">
                 <div className="price text-white font-bold">${product.price}</div>
-                <BsSuitHeartFill className={`${ product.addedToWishlist ? "text-red-600" : "text-white"} text-[1.5rem] cursor-pointer`} onClick={() => editWishlistHandler(product.id)}/>
-                <IoMdCart className={`${ product.addedToWishlist ? "text-red-600" : "text-white"} text-[1.5rem] cursor-pointer`}/>
+                <BsSuitHeartFill className={`${ product.addedToWishlist ? "text-red-500" : "text-white"} text-[1.5rem] cursor-pointer`} onClick={() => editWishlistHandler(product.id)}/>
+                <IoMdCart className={`${ product.addedToCart ? "text-red-600" : "text-white"} text-[1.5rem] cursor-pointer`}/>
             </div>
         </div>
     )

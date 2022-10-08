@@ -1,12 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { selectProductById, selectByCategory } from '../../app/slices/products';
+import { editWishlist } from '../../app/slices/wishlist';
+import { productWishlistState } from '../../app/slices/products';
 import Product from '../product/Product';
 
 
 const ProductDetail = () => {
+    const dispatch = useDispatch()
+    
+    const editWishlistHandler = (id) => {
+        dispatch(editWishlist(id));
+        dispatch(productWishlistState(id));
+    }
+
     const {productId} = useParams();
 
     const product = useSelector((state) => selectProductById(state, Number(productId)));
@@ -19,7 +28,6 @@ const ProductDetail = () => {
             </div>
         )
     }
-
 
     const productList = products.map(product => (
         <Product key={product.id} product={product} />
@@ -37,9 +45,9 @@ const ProductDetail = () => {
             <p className="font-semibold text-xl text-slate-600">{product.description}</p>
             <div className="cta flex space-x-4 items-center mt-5">
             <button className='py-4 px-2 bg-cyan-600 cursor-pointer text-white rounded-md shadow-lg shadow-cyan-400 hover:ring-4 
-                            hover:ring-cyan-300 '>Add to Cart</button>
+                            hover:ring-cyan-300 '>{ product.addedToCart ? "Remove From cart" : "Add to Cart"  }</button>
             <button className='py-4 px-2 bg-cyan-600 cursor-pointer text-white rounded-md shadow-lg shadow-cyan-400 hover:ring-4 
-                            hover:ring-cyan-300 '>Add to wishlist</button>
+                            hover:ring-cyan-300 ' onClick={() => editWishlistHandler(product.id)}>{ product.addedToWishlist ? "Remove from wishlist" : "Add to wishlist" }</button>
             </div>
             {/* Similar products */}
             <div className="">
