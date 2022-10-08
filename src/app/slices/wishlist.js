@@ -28,17 +28,6 @@ const wishlistSlice = createSlice({
             }else{
                 state.wishlistList.push(action.payload)
             }
-            
-            // else{
-            //     if(!state.wishlistList.find(id => id === action.payload.id)){
-            //         state.wishlistList.push(action.payload);
-            //     }else if (state.wishlistList.find(id => id === action.payload.id) && state.wishlistList.length === 1){
-            //         state.wishlistIsAvailable = false;
-            //         state.wishlistList = [];
-            //     }else{
-                    
-            //     }
-            // }
         }
     }
 });

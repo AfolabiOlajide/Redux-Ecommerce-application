@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCategories, fetchCategories, fetchProducts, getProducts, getErrorStatus } from '../app/slices/products';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getCategories, getProducts, getErrorStatus } from '../app/slices/products';
 import Category from '../components/category/Category';
 import Product from '../components/product/Product';
 
@@ -8,15 +8,6 @@ const Shop = () => {
     const categories = useSelector(getCategories);
     const products = useSelector(getProducts);
     const error = useSelector(getErrorStatus);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchCategories());
-        dispatch(fetchProducts());
-    }, [dispatch])
-
-    console.log(products);
-    console.log(categories)
 
 
     let categoryList;

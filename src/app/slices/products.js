@@ -31,7 +31,16 @@ export const fetchCategories = createAsyncThunk("products/fetchCategories", asyn
 const productsSlice = createSlice({
     name: "products",
     initialState,
-    reducers: {},
+    reducers: {
+        productWishlistState (state, action) {
+            const product = state.products.find(product => product.id === action.payload);
+            if(product.addedtoWishlist){
+                product.addedtoWishlist = false;
+            }else{
+                product.addedtoWishlist = true;
+            }
+        }
+    },
     extraReducers(builder){
         builder
             .addCase(fetchProducts.rejected, (state, action) => {
@@ -68,8 +77,8 @@ const productsSlice = createSlice({
 export const getErrorStatus = (state) => state.products.error;
 export const getCategories = (state) => state.products.categories;
 export const getProducts = (state) => state.products.products;
-
 export const selectProductById = (state, productId) => state.products.products.find( product => productId === product.id );
 export const selectByCategory = (state, category) => state.products.products.filter(product => category === product.category );
 
+export const { productWishlistState } = productsSlice.actions;
 export default productsSlice.reducer;
