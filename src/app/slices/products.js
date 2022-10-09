@@ -46,13 +46,21 @@ const productsSlice = createSlice({
                 }
             });
             state.products = updatedProducts;
-
-            // const product = state.products.filter(product => product.id === action.payload);
-            // if(product.addedToWishlist){
-            //     product.addedToWishlist = false;
-            // }else{
-            //     product.addedToWishlist = true;
-            // }
+        },
+        productCartState (state, action) {
+            const updatedProducts = state.products.map(product => {
+                if(product.id !== action.payload){
+                    return product;
+                }else{
+                    if(product.addedToCart){
+                        product.addedToCart = false;
+                    }else{
+                        product.addedToCart = true;
+                    }
+                    return product;
+                }
+            });
+            state.products = updatedProducts;
         }
     },
     extraReducers(builder){
@@ -94,5 +102,7 @@ export const getProducts = (state) => state.products.products;
 export const selectProductById = (state, productId) => state.products.products.find( product => productId === product.id );
 export const selectByCategory = (state, category) => state.products.products.filter(product => category === product.category );
 
-export const { productWishlistState } = productsSlice.actions;
+export const products = initialState.products;
+
+export const { productWishlistState, productCartState } = productsSlice.actions;
 export default productsSlice.reducer;

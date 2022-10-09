@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import { selectProductById, selectByCategory } from '../../app/slices/products';
 import { editWishlist } from '../../app/slices/wishlist';
-import { productWishlistState } from '../../app/slices/products';
+import { productWishlistState, productCartState } from '../../app/slices/products';
+import { addItemToCart } from '../../app/slices/carts';
 import Product from '../product/Product';
 
 
@@ -14,6 +15,11 @@ const ProductDetail = () => {
     const editWishlistHandler = (id) => {
         dispatch(editWishlist(id));
         dispatch(productWishlistState(id));
+    }
+
+    const addRemoveCartHandler = (id, image, price) => {
+        dispatch(addItemToCart({ id: id, price: price, image: image }))
+        dispatch(productCartState(id))
     }
 
     const {productId} = useParams();
@@ -45,7 +51,7 @@ const ProductDetail = () => {
             <p className="font-semibold text-xl text-slate-600">{product.description}</p>
             <div className="cta flex space-x-4 items-center mt-5">
             <button className='py-4 px-2 bg-cyan-600 cursor-pointer text-white rounded-md shadow-lg shadow-cyan-400 hover:ring-4 
-                            hover:ring-cyan-300 '>{ product.addedToCart ? "Remove From cart" : "Add to Cart"  }</button>
+                            hover:ring-cyan-300 ' onClick={() => addRemoveCartHandler(product.id, product.image, product.price)}>{ product.addedToCart ? "Remove From cart" : "Add to Cart"  }</button>
             <button className='py-4 px-2 bg-cyan-600 cursor-pointer text-white rounded-md shadow-lg shadow-cyan-400 hover:ring-4 
                             hover:ring-cyan-300 ' onClick={() => editWishlistHandler(product.id)}>{ product.addedToWishlist ? "Remove from wishlist" : "Add to wishlist" }</button>
             </div>

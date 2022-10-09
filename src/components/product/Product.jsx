@@ -1,19 +1,30 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsSuitHeartFill } from 'react-icons/bs'
 import { IoMdCart } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 
 
 import { editWishlist } from '../../app/slices/wishlist';
-import { productWishlistState } from '../../app/slices/products';
+import { productWishlistState, productCartState } from '../../app/slices/products';
+import { addItemToCart } from '../../app/slices/carts';
+// import { getCartItems } from '../../app/slices/carts';
+import { getProducts } from '../../app/slices/products';
 
 const Product = ({product}) => {
     const dispatch = useDispatch();
+    const products = useSelector(getProducts);
+
+    const productItem = products.find(prod => prod.id === product.id);
 
     const editWishlistHandler = (id) => {
         dispatch(editWishlist(id));
         dispatch(productWishlistState(id));
+    }
+
+    const editCartsHandler = (id) => {
+        dispatch(addItemToCart({id: id, image: productItem.image, price: productItem.price}));
+        dispatch(productCartState(id));
     }
 
     return (
@@ -30,7 +41,7 @@ const Product = ({product}) => {
             <div className="icons bg-gray-600 flex items-center space-x-3 px-3 h-[20%]">
                 <div className="price text-white font-bold">${product.price}</div>
                 <BsSuitHeartFill className={`${ product.addedToWishlist ? "text-red-500" : "text-white"} text-[1.5rem] cursor-pointer`} onClick={() => editWishlistHandler(product.id)}/>
-                <IoMdCart className={`${ product.addedToCart ? "text-red-600" : "text-white"} text-[1.5rem] cursor-pointer`}/>
+                <IoMdCart className={`${ product.addedToCart ? "text-red-500" : "text-white"} text-[1.5rem] cursor-pointer`} onClick={() => editCartsHandler(product.id)}/>
             </div>
         </div>
     )
