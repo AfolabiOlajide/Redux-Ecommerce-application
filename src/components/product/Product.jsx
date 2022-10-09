@@ -36,7 +36,7 @@ const Product = ({product}) => {
             </div>
             </Link>
             <div className="h-[10%] bg-gray-600 text-white px-3">
-                <span className='text-[0.7rem] md:text-[1rem]'>{product.title.substring(0, 18)}...</span>
+                <span className='text-[0.7rem] md:text-[.85rem]'>{product.title.substring(0, 15)}...</span>
             </div>
             <div className="icons bg-gray-600 flex items-center space-x-3 px-3 h-[20%]">
                 <div className="price text-white font-bold">${product.price}</div>
